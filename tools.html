@@ -90,6 +90,112 @@
             align-items: center;
             gap: 10px;
         }
+        
+        /* Password Generator Styles */
+        .generator-options {
+            background: rgba(16, 18, 20, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .option-group {
+            margin-bottom: 15px;
+        }
+        
+        .option-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #b0bec5;
+        }
+        
+        .form-select {
+            width: 100%;
+            padding: 10px;
+            background: #101214;
+            border: 1px solid #2a2c30;
+            border-radius: 5px;
+            color: white;
+        }
+        
+        .length-slider {
+            width: 100%;
+            height: 6px;
+            background: #2a2c30;
+            border-radius: 3px;
+            outline: none;
+        }
+        
+        .length-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #4fc3f7;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .password-display {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .password-output {
+            flex: 1;
+            padding: 12px;
+            background: #101214;
+            border: 1px solid #2a2c30;
+            border-radius: 5px;
+            color: white;
+            font-family: monospace;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+        
+        .copy-btn, .generate-btn {
+            background: #4fc3f7;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .copy-btn:hover, .generate-btn:hover {
+            background: #29b6f6;
+        }
+        
+        .generate-btn {
+            width: 100%;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .strength-indicator {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(16, 18, 20, 0.5);
+            border-radius: 8px;
+        }
+        
+        .strength-bar {
+            height: 8px;
+            background: #e57373;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            width: 0%;
+            transition: width 0.3s, background 0.3s;
+        }
+        
+        .strength-text {
+            color: #b0bec5;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -102,12 +208,8 @@
     <div class="grid-2">
         <div class="section-1">
             <img src="my-avatar_2.png" alt="Simone Pederzolli" class="avatar">
-            <h2>Contact Me</h2>
-            <p>Riva del Garda, Italy</p>
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/simone-pederzolli/"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/sciencefun91/"><i class="fab fa-github"></i></a>
-                <a href="mailto:pederzollisimone@gmail.com"><i class="fas fa-envelope"></i></a>
+            <h2>Security Tools</h2>
+            <p>Interactive security utilities</p>
         </div>
         
         <div class="section-2">
@@ -149,152 +251,54 @@
                 </div>
             </div>
             
-           <!-- Password Generator Tool -->
-<div class="security-tool">
-    <h3 class="tool-title"><i class="fas fa-key"></i> 2. Secure Password Generator</h3>
-    
-    <p>Generate strong, customizable passwords with different security levels.</p>
-    
-    <!-- Password Options -->
-    <div class="generator-options">
-        <div class="option-group">
-            <label for="passwordType">Password Type:</label>
-            <select id="passwordType" class="form-select">
-                <option value="memorable">Memorable (words + numbers)</option>
-                <option value="letters-numbers">Letters &amp; Numbers</option>
-                <option value="random">Fully Random</option>
-                <option value="numbers">Numbers Only</option>
-            </select>
+            <!-- Password Generator Tool -->
+            <div class="security-tool">
+                <h3 class="tool-title"><i class="fas fa-key"></i> 2. Secure Password Generator</h3>
+                
+                <p>Generate strong, customizable passwords with different security levels.</p>
+                
+                <!-- Password Options -->
+                <div class="generator-options">
+                    <div class="option-group">
+                        <label for="passwordType">Password Type:</label>
+                        <select id="passwordType" class="form-select">
+                            <option value="memorable">Memorable (words + numbers)</option>
+                            <option value="letters-numbers">Letters &amp; Numbers</option>
+                            <option value="random">Fully Random</option>
+                            <option value="numbers">Numbers Only</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <label for="passwordLength">Password Length: <span id="lengthValue">14</span> characters</label>
+                        <input type="range" id="passwordLength" min="4" max="64" value="14" class="length-slider">
+                    </div>
+                </div>
+                
+                <!-- Generated Password Display -->
+                <div class="password-display">
+                    <input type="text" id="generatedPassword" class="password-output" readonly>
+                    <button onclick="copyPassword()" class="copy-btn">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+                
+                <!-- Generate Button -->
+                <button onclick="generatePassword()" class="generate-btn">
+                    <i class="fas fa-sync-alt"></i> Generate Password
+                </button>
+                
+                <!-- Password Strength Indicator -->
+                <div class="strength-indicator" id="strengthIndicator">
+                    <div class="strength-bar"></div>
+                    <span class="strength-text">Strength: --</span>
+                </div>
+            </div>
         </div>
-        
-        <div class="option-group">
-            <label for="passwordLength">Password Length: <span id="lengthValue">14</span> characters</label>
-            <input type="range" id="passwordLength" min="4" max="64" value="14" class="length-slider">
-        </div>
     </div>
-    
-    <!-- Generated Password Display -->
-    <div class="password-display">
-        <input type="text" id="generatedPassword" class="password-output" readonly>
-        <button onclick="copyPassword()" class="copy-btn">
-            <i class="fas fa-copy"></i> Copy
-        </button>
-    </div>
-    
-    <!-- Generate Button -->
-    <button onclick="generatePassword()" class="generate-btn">
-        <i class="fas fa-sync-alt"></i> Generate Password
-    </button>
-    
-    <!-- Password Strength Indicator -->
-    <div class="strength-indicator" id="strengthIndicator">
-        <div class="strength-bar"></div>
-        <span class="strength-text">Strength: --</span>
-    </div>
-</div>
-
-<style>
-    .generator-options {
-        background: rgba(16, 18, 20, 0.5);
-        padding: 20px;
-        border-radius: 8px;
-        margin: 20px 0;
-    }
-    
-    .option-group {
-        margin-bottom: 15px;
-    }
-    
-    .option-group label {
-        display: block;
-        margin-bottom: 8px;
-        color: #b0bec5;
-    }
-    
-    .form-select {
-        width: 100%;
-        padding: 10px;
-        background: #101214;
-        border: 1px solid #2a2c30;
-        border-radius: 5px;
-        color: white;
-    }
-    
-    .length-slider {
-        width: 100%;
-        height: 6px;
-        background: #2a2c30;
-        border-radius: 3px;
-        outline: none;
-    }
-    
-    .length-slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 20px;
-        height: 20px;
-        background: #4fc3f7;
-        border-radius: 50%;
-        cursor: pointer;
-    }
-    
-    .password-display {
-        display: flex;
-        gap: 10px;
-        margin: 20px 0;
-    }
-    
-    .password-output {
-        flex: 1;
-        padding: 12px;
-        background: #101214;
-        border: 1px solid #2a2c30;
-        border-radius: 5px;
-        color: white;
-        font-family: monospace;
-        font-size: 1.1rem;
-        text-align: center;
-    }
-    
-    .copy-btn, .generate-btn {
-        background: #4fc3f7;
-        color: white;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    
-    .copy-btn:hover, .generate-btn:hover {
-        background: #29b6f6;
-    }
-    
-    .generate-btn {
-        width: 100%;
-        justify-content: center;
-        margin-top: 10px;
-    }
-    
-    .strength-indicator {
-        margin-top: 20px;
-        padding: 15px;
-        background: rgba(16, 18, 20, 0.5);
-        border-radius: 8px;
-    }
-    
-    .strength-bar {
-        height: 8px;
-        background: #e57373;
-        border-radius: 4px;
-        margin-bottom: 10px;
-        width: 0%;
-        transition: width 0.3s,
     
     <script>
-    // SHA-1 Hash function
+    // Password Compromise Check Functions (unchanged)
     async function sha1(message) {
         const msgBuffer = new TextEncoder().encode(message);
         const hashBuffer = await crypto.subtle.digest('SHA-1', msgBuffer);
@@ -312,7 +316,6 @@
             return;
         }
         
-        // Show loading state
         resultDiv.innerHTML = `
             <div class="loading">
                 <i class="fas fa-spinner fa-spin"></i>
@@ -321,27 +324,22 @@
             <p><small>Using k-anonymity model for privacy protection</small></p>`;
         
         try {
-            // 1. Calculate SHA-1 hash
             const passwordHash = await sha1(password);
             const prefix = passwordHash.substring(0, 5).toUpperCase();
             const suffix = passwordHash.substring(5).toUpperCase();
             
-            // 2. Call Pwned Passwords API (FREE, no key needed)
             const response = await fetch(`https://api.pwnedpasswords.com/range/${prefix}`, {
                 headers: {
                     'User-Agent': 'CS50-Password-Security-Checker',
-                    'Add-Padding': 'true' // Privacy enhancement
+                    'Add-Padding': 'true'
                 }
             });
             
-            if (!response.ok) {
-                throw new Error(`API error: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`API error: ${response.status}`);
             
             const data = await response.text();
             const lines = data.split('\n');
             
-            // 3. Search for the hash suffix in results
             let found = false;
             let count = 0;
             
@@ -354,7 +352,6 @@
                 }
             }
             
-            // 4. Display results
             if (found) {
                 resultDiv.innerHTML = `
                 <div class="danger">
@@ -370,11 +367,8 @@
                         <li>Consider using a password manager</li>
                     </ul>
                 </div>`;
-                
             } else {
-                // Password strength evaluation
                 const strength = evaluatePasswordStrength(password);
-                
                 resultDiv.innerHTML = `
                 <div class="safe">
                     <p><i class="fas fa-check-circle"></i> <strong>Good news! Password not found in breaches.</strong></p>
@@ -394,7 +388,6 @@
                     </ul>
                 </div>`;
             }
-            
         } catch (error) {
             console.error('Error:', error);
             resultDiv.innerHTML = `
@@ -409,34 +402,171 @@
     
     function evaluatePasswordStrength(password) {
         let score = 0;
-        
-        // Length
         if (password.length >= 12) score += 2;
         else if (password.length >= 8) score += 1;
-        
-        // Complexity
         if (/[a-z]/.test(password)) score += 1;
         if (/[A-Z]/.test(password)) score += 1;
         if (/[0-9]/.test(password)) score += 1;
         if (/[^a-zA-Z0-9]/.test(password)) score += 1;
-        
-        // Common patterns to avoid
         const commonPatterns = ['password', '123', 'qwerty', 'abc', 'admin', 'letmein', 'welcome'];
-        if (!commonPatterns.some(pattern => password.toLowerCase().includes(pattern))) {
-            score += 1;
-        }
-        
-        // Rating
+        if (!commonPatterns.some(pattern => password.toLowerCase().includes(pattern))) score += 1;
         if (score >= 7) return {rating: "Strong", message: "Good password complexity and length"};
         if (score >= 5) return {rating: "Medium", message: "Could be stronger - add more length or symbols"};
         return {rating: "Weak", message: "Consider using a longer, more complex password"};
     }
     
-    // Allow Enter key to trigger check
     document.getElementById('passwordInput').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') checkPasswordCompromise();
+    });
+    
+    // Password Generator Functions (NEW)
+    function generatePassword() {
+        const length = parseInt(document.getElementById('passwordLength').value);
+        const type = document.getElementById('passwordType').value;
+        let password = '';
+        
+        switch(type) {
+            case 'memorable':
+                password = generateMemorablePassword(length);
+                break;
+            case 'letters-numbers':
+                password = generateLettersNumbersPassword(length);
+                break;
+            case 'random':
+                password = generateRandomPassword(length);
+                break;
+            case 'numbers':
+                password = generateNumbersPassword(length);
+                break;
+            default:
+                password = generateLettersNumbersPassword(length);
+        }
+        
+        document.getElementById('generatedPassword').value = password;
+        updateStrengthIndicator(password);
+    }
+    
+    function generateMemorablePassword(length) {
+        const words = ['sun', 'moon', 'star', 'cloud', 'river', 'forest', 'mountain', 'ocean', 'bird', 'flower'];
+        const numbers = '0123456789';
+        let password = '';
+        
+        while (password.length < length) {
+            const word = words[Math.floor(Math.random() * words.length)];
+            const number = numbers[Math.floor(Math.random() * numbers.length)];
+            
+            if (password.length + word.length + 1 <= length) {
+                password += word + number;
+            } else {
+                break;
+            }
+        }
+        
+        while (password.length < length) {
+            password += numbers[Math.floor(Math.random() * numbers.length)];
+        }
+        
+        return password.slice(0, length);
+    }
+    
+    function generateLettersNumbersPassword(length) {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let password = '';
+        
+        for (let i = 0; i < length; i++) {
+            password += chars[Math.floor(Math.random() * chars.length)];
+        }
+        
+        return password;
+    }
+    
+    function generateRandomPassword(length) {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+        let password = '';
+        
+        for (let i = 0; i < length; i++) {
+            password += chars[Math.floor(Math.random() * chars.length)];
+        }
+        
+        return password;
+    }
+    
+    function generateNumbersPassword(length) {
+        const numbers = '0123456789';
+        let password = '';
+        
+        for (let i = 0; i < length; i++) {
+            password += numbers[Math.floor(Math.random() * numbers.length)];
+        }
+        
+        return password;
+    }
+    
+    function copyPassword() {
+        const passwordField = document.getElementById('generatedPassword');
+        if (!passwordField.value) return;
+        
+        passwordField.select();
+        document.execCommand('copy');
+        
+        const copyBtn = document.querySelector('.copy-btn');
+        const originalText = copyBtn.innerHTML;
+        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        copyBtn.style.background = '#81c784';
+        
+        setTimeout(() => {
+            copyBtn.innerHTML = originalText;
+            copyBtn.style.background = '#4fc3f7';
+        }, 2000);
+    }
+    
+    function updateStrengthIndicator(password) {
+        const strengthBar = document.querySelector('.strength-bar');
+        const strengthText = document.querySelector('.strength-text');
+        
+        let score = 0;
+        if (password.length >= 16) score += 3;
+        else if (password.length >= 12) score += 2;
+        else if (password.length >= 8) score += 1;
+        if (/[a-z]/.test(password)) score += 1;
+        if (/[A-Z]/.test(password)) score += 1;
+        if (/[0-9]/.test(password)) score += 1;
+        if (/[^a-zA-Z0-9]/.test(password)) score += 2;
+        const uniqueChars = new Set(password).size;
+        if (uniqueChars >= 12) score += 2;
+        else if (uniqueChars >= 8) score += 1;
+        
+        let strength, width, color;
+        if (score >= 8) {
+            strength = "Very Strong";
+            width = "100%";
+            color = "#81c784";
+        } else if (score >= 6) {
+            strength = "Strong";
+            width = "75%";
+            color = "#4fc3f7";
+        } else if (score >= 4) {
+            strength = "Medium";
+            width = "50%";
+            color = "#ffb74d";
+        } else {
+            strength = "Weak";
+            width = "25%";
+            color = "#e57373";
+        }
+        
+        strengthBar.style.width = width;
+        strengthBar.style.background = color;
+        strengthText.textContent = `Strength: ${strength} (Score: ${score}/10)`;
+    }
+    
+    document.getElementById('passwordLength').addEventListener('input', function() {
+        document.getElementById('lengthValue').textContent = this.value;
+    });
+    
+    window.addEventListener('DOMContentLoaded', function() {
+        generatePassword();
     });
     </script>
 </body>
 </html>
-
