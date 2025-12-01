@@ -1,6 +1,41 @@
 /* global */
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+/* Simple Navigation */
+.simple-nav {
+    background: #101214;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #2a2c30;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+.simple-nav a {
+    color: #7A7C80;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 1.1rem;
+    padding: 5px 0;
+    display: inline-block;
+}
+
+.simple-nav a:hover {
+    color: #4fc3f7;
+}
+
+/* Adjust body padding for fixed nav */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #101214;
+    color: #7A7C80;
+    padding-top: 60px; /* Add this line */
+}
+
 .grid-2{
     display: grid;
     grid-template-columns: repeat(2,1fr);
