@@ -145,13 +145,149 @@
                 </div>
             </div>
             
-            <!-- Placeholder for other tools -->
-            <div class="security-tool">
-                <h3 class="tool-title"><i class="fas fa-shield-alt"></i> 2. Additional Security Tools</h3>
-                <p>More security tools coming soon...</p>
-            </div>
+           <!-- Password Generator Tool -->
+<div class="security-tool">
+    <h3 class="tool-title"><i class="fas fa-key"></i> 2. Secure Password Generator</h3>
+    
+    <p>Generate strong, customizable passwords with different security levels.</p>
+    
+    <!-- Password Options -->
+    <div class="generator-options">
+        <div class="option-group">
+            <label for="passwordType">Password Type:</label>
+            <select id="passwordType" class="form-select">
+                <option value="memorable">Memorable (words + numbers)</option>
+                <option value="letters-numbers">Letters &amp; Numbers</option>
+                <option value="random">Fully Random</option>
+                <option value="numbers">Numbers Only</option>
+            </select>
+        </div>
+        
+        <div class="option-group">
+            <label for="passwordLength">Password Length: <span id="lengthValue">14</span> characters</label>
+            <input type="range" id="passwordLength" min="4" max="64" value="14" class="length-slider">
         </div>
     </div>
+    
+    <!-- Generated Password Display -->
+    <div class="password-display">
+        <input type="text" id="generatedPassword" class="password-output" readonly>
+        <button onclick="copyPassword()" class="copy-btn">
+            <i class="fas fa-copy"></i> Copy
+        </button>
+    </div>
+    
+    <!-- Generate Button -->
+    <button onclick="generatePassword()" class="generate-btn">
+        <i class="fas fa-sync-alt"></i> Generate Password
+    </button>
+    
+    <!-- Password Strength Indicator -->
+    <div class="strength-indicator" id="strengthIndicator">
+        <div class="strength-bar"></div>
+        <span class="strength-text">Strength: --</span>
+    </div>
+</div>
+
+<style>
+    .generator-options {
+        background: rgba(16, 18, 20, 0.5);
+        padding: 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    
+    .option-group {
+        margin-bottom: 15px;
+    }
+    
+    .option-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #b0bec5;
+    }
+    
+    .form-select {
+        width: 100%;
+        padding: 10px;
+        background: #101214;
+        border: 1px solid #2a2c30;
+        border-radius: 5px;
+        color: white;
+    }
+    
+    .length-slider {
+        width: 100%;
+        height: 6px;
+        background: #2a2c30;
+        border-radius: 3px;
+        outline: none;
+    }
+    
+    .length-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: #4fc3f7;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    
+    .password-display {
+        display: flex;
+        gap: 10px;
+        margin: 20px 0;
+    }
+    
+    .password-output {
+        flex: 1;
+        padding: 12px;
+        background: #101214;
+        border: 1px solid #2a2c30;
+        border-radius: 5px;
+        color: white;
+        font-family: monospace;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+    
+    .copy-btn, .generate-btn {
+        background: #4fc3f7;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .copy-btn:hover, .generate-btn:hover {
+        background: #29b6f6;
+    }
+    
+    .generate-btn {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .strength-indicator {
+        margin-top: 20px;
+        padding: 15px;
+        background: rgba(16, 18, 20, 0.5);
+        border-radius: 8px;
+    }
+    
+    .strength-bar {
+        height: 8px;
+        background: #e57373;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        width: 0%;
+        transition: width 0.3s,
     
     <script>
     // SHA-1 Hash function
