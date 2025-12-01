@@ -87,6 +87,15 @@ a{
     padding-left: 10px;
 }
 
+/* Avatar styling*/
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;  
+    object-fit: cover;   
+    border: 3px solid #4fc3f7;  
+    margin-bottom: 20px;
+}
 /* media queres */
 @media(max-width:780px){
     .grid-2{
