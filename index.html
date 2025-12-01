@@ -4,37 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link rel="stylesheet" href="style.css">
-    <title>Your Name</title>
+    <title>Essential Security Tools</title>
 </head>
 <body>
     <div class="grid-2">
         <div class="section-1">
-            <i class="fas fa-code fa-5x white"></i>
-            <h2>FirstName LastName</h2>
-            <p>City,Country.</p>
+            <i class="fas fa-shield-alt fa-5x white"></i>
+            <h2>Simone Pederzolli</h2>
+            <p>Riva del Garda, Italy.</p>
+            <p class="subtitle">Cybersecurity & Tech Enthusiast</p>
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-linkedin"></i></a>
             <a href="#"><i class="fab fa-github"></i></a>
         </div>
+        
         <div class="section-2">
             <h2>About</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quas sint et nihil iusto eius nostrum sit error, repellat optio quisquam! Magnam dolore iusto cumque. Nostrum error iste neque maiores.</p>
-            <h2>Experience</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis in maiores autem quidem.</p>
-
-            <h2>Skills</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis in maiores autem quidem obcaecati excepturi! Cupiditate eaque itaque magni voluptatibus neque nobis est dolor? Atque sunt minus ipsa asperiores. At.</p>
+            <p>CS50 Final Project focused on password security and data breach awareness. Passionate about cybersecurity and creating tools to help people protect their online accounts.</p>
+            
+            <h2>Security Tools</h2>
+            
+            <!-- Password Check Tool -->
+            <div class="tool-box">
+                <h3><i class="fas fa-key"></i> Password Security Check</h3>
+                <p>Check if your password has been exposed in data breaches (using Have I Been Pwned API)</p>
+                
+                <div class="input-group">
+                    <input type="password" id="passwordInput" placeholder="Enter password to check" 
+                           onkeypress="if(event.key === 'Enter') checkPassword()">
+                    <button onclick="checkPassword()" class="check-btn">
+                        <i class="fas fa-search"></i> Check
+                    </button>
+                </div>
+                
+                <div class="result-box" id="passwordResult">
+                    <p>Enter a password to check its security...</p>
+                </div>
+                
+                <div class="password-tips">
+                    <h4><i class="fas fa-lightbulb"></i> Password Tips:</h4>
+                    <ul>
+                        <li>Use at least 12 characters</li>
+                        <li>Mix letters, numbers, and symbols</li>
+                        <li>Avoid common words and patterns</li>
+                        <li>Use a unique password for each site</li>
+                        <li>Consider using a password manager</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Email Check Tool -->
+            <div class="tool-box">
+                <h3><i class="fas fa-envelope"></i> Email Breach Check</h3>
+                <p>Check if your email appears in known data breaches</p>
+                
+                <div class="input-group">
+                    <input type="email" id="emailInput" placeholder="your@email.com" 
+                           onkeypress="if(event.key === 'Enter') checkEmail()">
+                    <button onclick="checkEmail()" class="check-btn">
+                        <i class="fas fa-search"></i> Check Email
+                    </button>
+                </div>
+                
+                <div class="result-box" id="emailResult">
+                    <p>Enter your email to check for breaches...</p>
+                </div>
+                
+                <p class="note">
+                    <i class="fas fa-info-circle"></i> This uses the public Have I Been Pwned service. 
+                    <a href="https://haveibeenpwned.com" target="_blank">Learn more</a>
+                </p>
+            </div>
+            
             <h2>Projects</h2>
-            <a href="#">Project 1</a>
-            <a href="#">Project 2</a>
-            <a href="#">Project 3</a>
-            <a href="#">Project 4</a>
-            <a href="#">Project 5</a>
+            <a href="#">Password Generator Tool</a>
+            <a href="#">Data Breach Analytics</a>
+            <a href="#">Security Awareness Platform</a>
+            
             <h2>Contact</h2>
-            <p>myEmail@email.com</p>
+            <p>pederzollisimone@gmail.com</p>
         </div>
     </div>
+    
+    <script src="security.js"></script>
 </body>
 </html>
