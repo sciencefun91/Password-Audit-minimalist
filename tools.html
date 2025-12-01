@@ -8,33 +8,294 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Tools - Password Security</title>
+    <style>
+        .security-tool {
+            background: rgba(26, 28, 32, 0.7);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border-left: 4px solid #4fc3f7;
+        }
+        
+        .tool-title {
+            color: #4fc3f7;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .password-check {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .password-input {
+            flex: 1;
+            padding: 12px;
+            background: #101214;
+            border: 1px solid #2a2c30;
+            border-radius: 5px;
+            color: white;
+        }
+        
+        .check-btn {
+            background: #4fc3f7;
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .check-btn:hover {
+            background: #29b6f6;
+        }
+        
+        .result-box {
+            background: #1a1c20;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            min-height: 100px;
+        }
+        
+        .safe {
+            color: #81c784;
+            font-weight: bold;
+        }
+        
+        .warning {
+            color: #ffb74d;
+            font-weight: bold;
+        }
+        
+        .danger {
+            color: #e57373;
+            font-weight: bold;
+        }
+        
+        .password-tips {
+            background: rgba(26, 28, 32, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 3px solid #81c784;
+        }
+        
+        .loading {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
 </head>
 <body>
-<nav class="simple-nav">
-    <a href="index.html">Home</a>
-    <a href="tools.html">Tools</a>
-    <a href="contact.html">Contact</a>
-</nav>
+    <nav class="simple-nav">
+        <a href="index.html">Home</a>
+        <a href="tools.html">Tools</a>
+        <a href="contact.html">Contact</a>
+    </nav>
 
     <div class="grid-2">
         <div class="section-1">
             <img src="my-avatar_2.png" alt="Simone Pederzolli" class="avatar">
             <h2>Security Tools</h2>
-            <p>Coming soon...</p>
+            <p>Interactive security utilities</p>
         </div>
         
         <div class="section-2">
-            <h2>Password Security Tools</h2>
-            <p>This section will contain interactive security tools.</p>
-            <p>Features to be implemented:</p>
-            <ul>
-                <li>Password strength checker</li>
-                <li>Have I Been Pwned API integration</li>
-                <li>Secure password generator</li>
-                <li>Data breach statistics</li>
-            </ul>
+            <h2>Security Tools</h2>
+            
+            <!-- Password Compromise Check Tool -->
+            <div class="security-tool">
+                <h3 class="tool-title"><i class="fas fa-key"></i> 1. Password Compromise Check</h3>
+                
+                <p>Check if your password has been exposed in data breaches using the <strong>free Pwned Passwords API</strong> from Have I Been Pwned.</p>
+                
+                <p><strong>How it works (k-anonymity model):</strong></p>
+                <ul>
+                    <li>Your password is converted to a SHA-1 hash</li>
+                    <li>Only the first 5 characters of the hash are sent to the API</li>
+                    <li>The API returns all hashes starting with those 5 characters</li>
+                    <li>Your browser compares the full hash locally</li>
+                    <li>Your password never leaves your browser in plain text</li>
+                </ul>
+                
+                <p>The database contains <strong>over 600 million</strong> compromised passwords from real data breaches.</p>
+                
+                <!-- Password Check Input -->
+                <div class="password-check">
+                    <input type="password" id="passwordInput" class="password-input" placeholder="Enter password to check">
+                    <button onclick="checkPasswordCompromise()" class="check-btn">
+                        <i class="fas fa-search"></i> Check Password
+                    </button>
+                </div>
+                
+                <div class="password-tips">
+                    <p><i class="fas fa-lightbulb"></i> <strong>Try these test passwords:</strong></p>
+                    <p>"password123" (likely compromised) • "CS50final2023!" (likely safe)</p>
+                </div>
+                
+                <!-- Results Container -->
+                <div class="result-box" id="passwordResult">
+                    <p>Enter a password above to check if it has been compromised...</p>
+                </div>
+            </div>
+            
+            <!-- Placeholder for other tools -->
+            <div class="security-tool">
+                <h3 class="tool-title"><i class="fas fa-shield-alt"></i> 2. Additional Security Tools</h3>
+                <p>More security tools coming soon...</p>
+            </div>
         </div>
     </div>
+    
+    <script>
+    // SHA-1 Hash function
+    async function sha1(message) {
+        const msgBuffer = new TextEncoder().encode(message);
+        const hashBuffer = await crypto.subtle.digest('SHA-1', msgBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+    
+    async function checkPasswordCompromise() {
+        const passwordInput = document.getElementById('passwordInput');
+        const resultDiv = document.getElementById('passwordResult');
+        const password = passwordInput.value;
+        
+        if (!password) {
+            resultDiv.innerHTML = '<p class="warning">Please enter a password to check</p>';
+            return;
+        }
+        
+        // Show loading state
+        resultDiv.innerHTML = `
+            <div class="loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <span>Checking password against Have I Been Pwned database...</span>
+            </div>
+            <p><small>Using k-anonymity model for privacy protection</small></p>`;
+        
+        try {
+            // 1. Calculate SHA-1 hash
+            const passwordHash = await sha1(password);
+            const prefix = passwordHash.substring(0, 5).toUpperCase();
+            const suffix = passwordHash.substring(5).toUpperCase();
+            
+            // 2. Call Pwned Passwords API (FREE, no key needed)
+            const response = await fetch(`https://api.pwnedpasswords.com/range/${prefix}`, {
+                headers: {
+                    'User-Agent': 'CS50-Password-Security-Checker',
+                    'Add-Padding': 'true' // Privacy enhancement
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error(`API error: ${response.status}`);
+            }
+            
+            const data = await response.text();
+            const lines = data.split('\n');
+            
+            // 3. Search for the hash suffix in results
+            let found = false;
+            let count = 0;
+            
+            for (const line of lines) {
+                const [hashSuffix, breachCount] = line.split(':');
+                if (hashSuffix === suffix) {
+                    found = true;
+                    count = parseInt(breachCount);
+                    break;
+                }
+            }
+            
+            // 4. Display results
+            if (found) {
+                resultDiv.innerHTML = `
+                <div class="danger">
+                    <p><i class="fas fa-exclamation-triangle"></i> <strong>WARNING: Password Compromised!</strong></p>
+                    <p>This password has been found <strong>${count.toLocaleString()} times</strong> in data breaches.</p>
+                </div>
+                <div class="password-tips">
+                    <p><i class="fas fa-exclamation-circle"></i> <strong>IMMEDIATE ACTION REQUIRED:</strong></p>
+                    <ul>
+                        <li>Change this password on ALL accounts where you use it</li>
+                        <li>Use a completely different, strong password</li>
+                        <li>Enable two-factor authentication where available</li>
+                        <li>Consider using a password manager</li>
+                    </ul>
+                </div>`;
+                
+            } else {
+                // Password strength evaluation
+                const strength = evaluatePasswordStrength(password);
+                
+                resultDiv.innerHTML = `
+                <div class="safe">
+                    <p><i class="fas fa-check-circle"></i> <strong>Good news! Password not found in breaches.</strong></p>
+                    <p>This password was not found in the Have I Been Pwned database.</p>
+                </div>
+                <div class="mt-3">
+                    <p><strong>Password Strength:</strong> ${strength.rating}</p>
+                    <p>${strength.message}</p>
+                </div>
+                <div class="password-tips">
+                    <p><i class="fas fa-lightbulb"></i> <strong>Keep your password secure:</strong></p>
+                    <ul>
+                        <li>Use at least 12 characters</li>
+                        <li>Mix letters, numbers, and symbols</li>
+                        <li>Don't reuse passwords across sites</li>
+                        <li>Update passwords regularly</li>
+                    </ul>
+                </div>`;
+            }
+            
+        } catch (error) {
+            console.error('Error:', error);
+            resultDiv.innerHTML = `
+            <p class="warning">
+                <i class="fas fa-exclamation-circle"></i> 
+                Unable to check password at this time.
+            </p>
+            <p>Error: ${error.message}</p>
+            <p>You can also check manually at: <a href="https://haveibeenpwned.com/Passwords" target="_blank">Have I Been Pwned Passwords</a></p>`;
+        }
+    }
+    
+    function evaluatePasswordStrength(password) {
+        let score = 0;
+        
+        // Length
+        if (password.length >= 12) score += 2;
+        else if (password.length >= 8) score += 1;
+        
+        // Complexity
+        if (/[a-z]/.test(password)) score += 1;
+        if (/[A-Z]/.test(password)) score += 1;
+        if (/[0-9]/.test(password)) score += 1;
+        if (/[^a-zA-Z0-9]/.test(password)) score += 1;
+        
+        // Common patterns to avoid
+        const commonPatterns = ['password', '123', 'qwerty', 'abc', 'admin', 'letmein', 'welcome'];
+        if (!commonPatterns.some(pattern => password.toLowerCase().includes(pattern))) {
+            score += 1;
+        }
+        
+        // Rating
+        if (score >= 7) return {rating: "Strong", message: "Good password complexity and length"};
+        if (score >= 5) return {rating: "Medium", message: "Could be stronger - add more length or symbols"};
+        return {rating: "Weak", message: "Consider using a longer, more complex password"};
+    }
+    
+    // Allow Enter key to trigger check
+    document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') checkPasswordCompromise();
+    });
+    </script>
 </body>
 </html>
-
