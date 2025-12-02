@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Contact - Simone Pederzolli</title>
     <style>
@@ -55,7 +57,7 @@
             background: #101214;
             border: 1px solid #2a2c30;
             border-radius: 5px;
-            color: #7A7C80;
+            color: white;
             font-family: 'Roboto', sans-serif;
             font-size: 1rem;
         }
@@ -117,53 +119,65 @@
         <a href="contact.html">Contact</a>
     </nav>
 
-    <div class="grid-2">
-        <div class="section-1">
-            <img src="my-avatar_2.png" alt="Simone Pederzolli" class="avatar">
-            <h2>Contact Me</h2>
-            <p>Riva del Garda, Italy</p>
-            <div class="social-icons">
-                <a href="https://www.linkedin.com/in/simone-pederzolli/"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/sciencefun91/"><i class="fab fa-github"></i></a>
-                <a href="mailto:pederzollisimone@gmail.com"><i class="fas fa-envelope"></i></a>
-            </div>
-        </div>
+    <main class="container py-5">
+        <h1 class="display-5 fw-bold mb-5 text-white text-center">Contact</h1>
         
-        <div class="section-2">
-            <h2>Contact Information</h2>
-            
-            <div class="contact-info">
-                <p><i class="fas fa-envelope"></i> <strong>Email:</strong> pederzollisimone@gmail.com</p>
-                <p><i class="fas fa-phone"></i> <strong>Phone:</strong> +39 391 371 5707</p>
-                <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Riva del Garda, Trentino, Italy</p>
+        <div class="row">
+            <!-- Colonna sinistra: Contatti e Mappa -->
+            <div class="col-lg-8">
+                <div class="contact-info">
+                    <h3 class="text-white mb-4">Contact Information</h3>
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> pederzollisimone@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> <strong>Phone:</strong> +39 391 371 5707</p>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Riva del Garda, Trentino, Italy</p>
+                </div>
+                
+                <!-- Google Maps -->
+                <div class="contact-map mt-4">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5554.201917511679!2d10.83601547754159!3d45.88929387108403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478216deeb2c5431%3A0xcf5fb268aa92eac6!2sVia%20Lavino%2C%204%2C%2038066%20Riva%20del%20Garda%20TN!5e0!3m2!1sit!2sit!4v1764602973859!5m2!1sit!2sit"
+                        allowfullscreen 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="contact-form mt-5">
+                    <h3 class="form-title">Contact Form</h3>
+                    <form action="#" class="form" data-form>
+                        <div class="input-group-form">
+                            <input type="text" name="fullname" class="form-input" placeholder="Full name" required>
+                            <input type="email" name="email" class="form-input" placeholder="Email address" required>
+                        </div>
+                        <textarea name="message" class="form-input" placeholder="Your Message" required></textarea>
+                        <button class="form-btn" type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Send Message</span>
+                        </button>
+                    </form>
+                </div>
             </div>
             
-            <!-- Google Maps with correct Riva del Garda location -->
-            <div class="contact-map">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5554.201917511679!2d10.83601547754159!3d45.88929387108403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478216deeb2c5431%3A0xcf5fb268aa92eac6!2sVia%20Lavino%2C%204%2C%2038066%20Riva%20del%20Garda%20TN!5e0!3m2!1sit!2sit!4v1764602973859!5m2!1sit!2sit"
-                    allowfullscreen 
-                    loading="lazy">
-                </iframe>
-            </div>
-            
-            <!-- Contact Form -->
-            <div class="contact-form">
-                <h3 class="form-title">Contact Form</h3>
-                <form action="#" class="form" data-form>
-                    <div class="input-group-form">
-                        <input type="text" name="fullname" class="form-input" placeholder="Full name" required>
-                        <input type="email" name="email" class="form-input" placeholder="Email address" required>
+            <!-- Colonna destra: Profilo -->
+            <div class="col-lg-4 mt-5 mt-lg-0">
+                <div class="text-center">
+                    <img src="my-avatar_2.png" alt="Simone Pederzolli" class="avatar mb-3">
+                    <h2 class="text-white mb-2">Simone Pederzolli</h2>
+                    <p class="text-light mb-4">Riva del Garda, Italy</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/simone-pederzolli/" class="btn btn-outline-primary me-2 mb-2">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                        <a href="https://github.com/sciencefun91/" class="btn btn-outline-light me-2 mb-2">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="mailto:pederzollisimone@gmail.com" class="btn btn-outline-info mb-2">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
                     </div>
-                    <textarea name="message" class="form-input" placeholder="Your Message" required></textarea>
-                    <button class="form-btn" type="submit">
-                        <i class="fas fa-paper-plane"></i>
-                        <span>Send Message</span>
-                    </button>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 </body>
 </html>
-
