@@ -41,6 +41,6 @@ The website uses:
 - External APIs (Have I Been Pwned) for password checking  
 
 ## Development Notes  
-While the design prioritizes functionality over aesthetics, the core focus is on implementing practical security tools. During development, I used AI assistance to review code for errors and optimize performance, complementing my learning from CS50.
+This project emphasizes practical functionality over visual design, focusing on implementing usable security tools. During development, I used AI assistance for code review and optimization. Importantly, I avoided being a "prompt monkey" (blindly copying code); instead, I used AI as a learning tool to understand better practices and improve my own coding skills.
 
 As a beginner in web development, this project represents my effort to create something both educational and practical in the field of cybersecurity.
