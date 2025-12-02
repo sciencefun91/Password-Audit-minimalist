@@ -33,117 +33,70 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: #101214;
     color: #7A7C80;
-    padding-top: 60px; /* Add this line */
+    padding-top: 60px;
+    min-height: 100vh;
 }
 
-.intro-text {
-    line-height: 1.6;
-    max-width: 600px;
+/* Main container */
+.container {
+    max-width: 900px;
     margin: 0 auto;
+}
+
+/* Intro text */
+.intro-text {
+    line-height: 1.8;
     text-align: left;
 }
 
-
-.grid-2{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-}
-
-
-
-h2,.white{
-    color: #fff;
-}
-
-a{
-    color: #7A7C80;
-    text-decoration: none;
-}
-/* section 1 */
-.section-1{
-    padding-top: 40vh;
-    text-align: center;
-}
-
-.section-1 p{
-    font-size: 1.1rem;
-    padding-bottom: 10px;
-    margin:0;
-}
-
-.section-1 h2{
-    font-size: 1.7rem;
-    margin-bottom: 10px;
-}
-
-.section-1 a{
-    font-size: 1.5rem;
-    padding: 10px;
-}
-/* section 2 */
-.section-2{
-    padding-top: 10vh;
-    width: 70%;
-}
-
-.section-2 h2{
-    font-size: 1.7rem;
-    margin-bottom: 10px;
-}
-
-.section-2 p{
-    font-size: 1.1rem;
-    padding-bottom: 10px;
-    margin:0;
-}
-
-.section-2 a{
-    display: block;
-    padding: 5px;
-    font-size: 1.2rem;
-    padding-left: 0;
-    width: 100px;
-}
-/* animations / utilities */
-.section-2 a:hover{
-    font-size: 1.3rem;
-    color: #fff;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.section-1 a:hover{
-    color: #fff;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.white:hover{
-    position: relative;
-    padding-left: 10px;
-}
-
-/* Avatar styling*/
+/* Avatar styling - UPDATED for new layout */
 .avatar {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;  
-    object-fit: cover;   
-    border: 3px solid #4fc3f7;  
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #4fc3f7;
+    margin-bottom: 15px;
+}
+
+/* Security tools styling (for tools.html) */
+.security-tool {
+    background: rgba(26, 28, 32, 0.7);
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border-left: 4px solid #4fc3f7;
+}
+
+.tool-title {
+    color: #4fc3f7;
     margin-bottom: 20px;
 }
-/* media queres */
-@media(max-width:780px){
-    .grid-2{
-        grid-template-columns: 1fr;
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
     }
-    .section-1{
-        padding:0;
-        padding-top: 5rem;
+    
+    .avatar {
+        width: 120px;
+        height: 120px;
     }
-    .section-2{
-        padding: 0;
-        padding-left: 1.5rem;
-        padding-top: 2rem;
+    
+    .simple-nav a {
+        margin: 0 10px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .simple-nav {
+        padding: 10px;
+    }
+    
+    .simple-nav a {
+        display: block;
+        margin: 5px 0;
     }
 }
