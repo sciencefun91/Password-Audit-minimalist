@@ -8,88 +8,135 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    <title>Your Name</title>
+    <title>Simone Pederzolli - CS50 Final Project</title>
 </head>
 <body>
     <!-- Simple Navigation -->
-<nav class="simple-nav">
-    <a href="index.html">Home</a>
-    <a href="tools.html">Tools</a>
-    <a href="contact.html">Contact</a>
-</nav>
+    <nav class="simple-nav">
+        <a href="index.html">Home</a>
+        <a href="tools.html">Tools</a>
+        <a href="contact.html">Contact</a>
+    </nav>
     
-
-        <div class="section-2">
-            <h2>Intro</h2>
-            <div class="intro-text">
-    <p>I chose to dedicate my final project to the theme<br>
-    of password security—an aspect often underestimated<br>
-    but fundamental in protecting computer systems.</p>
-    
-    <p>Passwords are indeed the primary authentication<br>
-    mechanism and, when managed inadequately, become<br>
-    one of the most exposed points to attacks.</p>
-    
-    <p>Improving their use thus means significantly<br>
-    reducing the risk surface for both users and services.</p>
-    
-    <p>With this in mind, the developed website integrates<br>
-    two complementary tools designed to be clear,<br>
-    reliable, and technically transparent: a function<br>
-    to verify credential exposure via the Have I Been<br>
-    Pwned API, and a configurable secure password generator.</p>
-    
-    <p>Both aim to promote more conscious and robust<br>
-    choices in the daily management of one’s digital credentials.</p>
-</div>
-
-
-            
-             <h2>Tools</h2>
-
-<div>
-    <h3>1. Data Breach Check</h3>
-    <p>Instantly verify if your email appears in known data breaches using the Have I Been Pwned API.</p>
-</div>
-
-<div>
-    <h3>2. Secure Password Generator</h3>
-    <p>Create strong, customizable passwords with options for length and complexity.</p>
-</div>
-
-            <h2>Common Password Mistakes to Avoid</h2>
-
-<ol>
-    <li><strong>Using extremely simple passwords</strong> or those found in public dictionaries.</li>
-    <li><strong>Reusing the same password</strong> across multiple services.</li>
-    <li><strong>Not enabling two-factor authentication (2FA)</strong> when available.</li>
-    <li><strong>Choosing passwords based on personal information</strong> that's easily discoverable.</li>
-    <li><strong>Using passwords that are too short</strong>, making them vulnerable to brute-force attacks.</li>
-    <li><strong>Failing to change passwords</strong> after breaches or prolonged use.</li>
-    <li><strong>Storing credentials</strong> in insecure or unencrypted locations.</li>
-    <li><strong>Sharing passwords</strong> through insecure channels (SMS, email, unencrypted messaging).</li>
-    <li><strong>Adopting predictable patterns</strong> like incremental numbers or common suffixes.</li>
-    <li><strong>Not using a password manager</strong>, which leads to password reuse and weak credentials.</li>
-</ol>
-
-<h2>Conclusion</h2>
-
-            
-<p>This project aims to provide both educational and practical contributions to password security, integrating real tools and fundamental cybersecurity concepts into a simple, transparent, and fully understandable web application.</p>
-
-<p>Following CS50's philosophy, the entire work prioritizes active learning, code clarity, and incremental feature development, with the goal of uniting theory, implementation, and end-user awareness.</p>
-  </div>
-    
-    <div class="section-1"> <!-- Profilo DOPO -->
-        <img src="my-avatar_2.png" alt="Simone Pederzolli" class="avatar">
-        <h2>Simone Pederzolli</h2>
-        <p>Riva del garda, Italy</p>
-        <a href="https://www.linkedin.com/in/simone-pederzolli/"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/sciencefun91/"><i class="fab fa-github"></i></a>
-        <a href="mailto:pederzollisimone@gmail.com"><i class="fas fa-envelope"></i></a>
-    </div>
-</div>
+    <!-- Main Container -->
+    <main class="container py-5">
+        
+        <!-- Intro Section -->
+        <section class="row align-items-center mb-5">
+            <div class="col-lg-8">
+                <h1 class="display-5 fw-bold mb-4 text-white">Password Security Project</h1>
+                <div class="intro-text">
+                    <p class="lead">I chose to dedicate my final project to the theme of password security—an aspect often underestimated but fundamental in protecting computer systems.</p>
+                    <p class="lead">Passwords are indeed the primary authentication mechanism and, when managed inadequately, become one of the most exposed points to attacks.</p>
+                    <p class="lead">Improving their use thus means significantly reducing the risk surface for both users and services.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <!-- Placeholder for your image - replace src with your actual image -->
+                <div class="security-image text-center">
+                    <img src="password-security.jpg" alt="Password Security" class="img-fluid rounded shadow">
+                    <p class="text-muted mt-2"><small>Password security illustration</small></p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tools Section -->
+        <section class="mb-5">
+            <h2 class="mb-4 text-white border-bottom pb-2">Tools</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 bg-dark border-secondary">
+                        <div class="card-body">
+                            <h3 class="card-title h5 text-white">1. Data Breach Check</h3>
+                            <p class="card-text">Instantly verify if your email appears in known data breaches using the Have I Been Pwned API.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 bg-dark border-secondary">
+                        <div class="card-body">
+                            <h3 class="card-title h5 text-white">2. Secure Password Generator</h3>
+                            <p class="card-text">Create strong, customizable passwords with options for length and complexity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Password Mistakes Section -->
+        <section class="mb-5">
+            <h2 class="mb-4 text-white border-bottom pb-2">Common Password Mistakes to Avoid</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <ol class="list-group list-group-numbered bg-transparent">
+                        <li class="list-group-item bg-transparent text-light border-secondary">
+                            <strong>Using extremely simple passwords</strong> or those found in public dictionaries.
+                        </li>
+                        <li class="list-group-item bg-transparent text-light border-secondary">
+                            <strong>Reusing the same password</strong> across multiple services.
+                        </li>
+                        <li class="list-group-item bg-transparent text-light border-secondary">
+                            <strong>Not enabling two-factor authentication (2FA)</strong> when available.
+                        </li>
+                        <li class="list-group-item bg-transparent text-light border-secondary">
+                            <strong>Choosing passwords based on personal information</strong> that's easily discoverable.
+                        </li>
+                        <li class="list-group-item bg-transparent text-light border-secondary">
+                            <strong>Using passwords that are too short</strong>, making them vulnerable to brute-force attacks.
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-md-6">
+                    <ol class="list-group list-group-numbered bg-transparent" start="6">
+                        <li class="list-group-item bg-transparent text-light border-secondary">
+                            <strong>Failing to change passwords</strong> after breaches or prolonged use.
+                        </li>
+                        <li class="list-group-item bg-transparent text-light border-secondary">
+                            <strong>Storing credentials</strong> in insecure or unencrypted locations.
+                        </li>
+                        <li class="list-group-item bg-transparent text-light border-secondary">
+                            <strong>Sharing passwords</strong> through insecure channels (SMS, email, unencrypted messaging).
+                        </li>
+                        <li class="list-group-item bg-transparent text-light border-secondary">
+                            <strong>Adopting predictable patterns</strong> like incremental numbers or common suffixes.
+                        </li>
+                        <li class="list-group-item bg-transparent text-light border-secondary">
+                            <strong>Not using a password manager</strong>, which leads to password reuse and weak credentials.
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Conclusion Section -->
+        <section class="mb-5">
+            <h2 class="mb-4 text-white border-bottom pb-2">Conclusion</h2>
+            <div class="conclusion-text">
+                <p class="lead">This project aims to provide both educational and practical contributions to password security, integrating real tools and fundamental cybersecurity concepts into a simple, transparent, and fully understandable web application.</p>
+                <p class="lead">Following CS50's philosophy, the entire work prioritizes active learning, code clarity, and incremental feature development, with the goal of uniting theory, implementation, and end-user awareness.</p>
+            </div>
+        </section>
+        
+        <!-- Profile Section -->
+        <section class="text-center py-5 border-top border-secondary">
+            <div class="profile-container">
+                <img src="my-avatar_2.png" alt="Simone Pederzolli" class="avatar mb-3">
+                <h2 class="text-white mb-2">Simone Pederzolli</h2>
+                <p class="text-muted mb-4">Riva del Garda, Italy</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/simone-pederzolli/" class="btn btn-outline-primary me-2">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/sciencefun91/" class="btn btn-outline-light me-2">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="mailto:pederzollisimone@gmail.com" class="btn btn-outline-info">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+    </main>
 </body>
 </html>
-
-
