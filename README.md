@@ -1,5 +1,6 @@
 A Simple and Essential Website by Simone Pederzolli  
-**Video Demo:** # TO DO....
+
+Video Demo: https://youtu.be/S2v-enejSV4
 
 ## Description  
 This final project involves developing a website dedicated to password security. I selected this topic because it represents a fundamental aspect of cybersecurity that is frequently overlooked despite its importance.
