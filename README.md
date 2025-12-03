@@ -22,14 +22,30 @@ This section introduces the project's purpose and provides an overview. It expla
 This page contains two main interactive tools:  
 
 1. **Password Compromise Check**  
-   - Checks if a password has been exposed in known data breaches  
-   - Uses the Have I Been Pwned API with k-anonymity for privacy protection  
-   - Returns results indicating whether the password is safe or compromised  
+Technical Implementation Details:
+The password check operates through a carefully implemented client-side process. When a user submits a password, JavaScript's Web Crypto API first converts it to a SHA-1 hash. This hash is then split: only the first 5 characters (the prefix) are transmitted to the Have I Been Pwned API. This k-anonymity approach ensures that no complete password information leaves the user's browser. The API responds with a list of hundreds of password suffixes that share that same 5-character prefix. My JavaScript then performs a local comparison to see if the remaining 35 characters of the user's hash match any in the returned list.
+
+Error Handling and User Experience:
+I implemented comprehensive error handling to manage various scenarios. Network timeouts are handled gracefully with user-friendly messages if the API doesn't respond within 10 seconds. Invalid API responses trigger appropriate warnings without crashing the interface. The system also validates input before processing—empty passwords are rejected immediately, and excessively long inputs are truncated to prevent performance issues. For user convenience, I included sample test passwords ("password123" as compromised and "CS50final2025!" as safe) that users can try with a single click to understand the tool's functionality without entering personal passwords.
+
+Privacy and Security Considerations:
+This implementation prioritizes privacy through several mechanisms. No passwords are stored locally or transmitted in plaintext. The temporary hash comparison happens in memory and isn't persisted to disk. The interface clears password fields after checking and doesn't maintain a history of checked passwords. Additionally, the tool includes educational explanations about why password exposure matters and what steps users should take if their password appears in a breach.
+
+Performance Optimizations:
+To ensure responsive performance, I implemented request debouncing that waits for users to stop typing before initiating the API call. A visual loading indicator provides feedback during the approximately 1-2 second checking process. The code efficiently parses the API's response (which can contain hundreds of lines) using optimized string matching algorithms to quickly determine match status even on mobile devices with limited processing power.
 
 2. **Secure Password Generator**  
-   - Creates strong, customizable passwords with length options from 8 to 64 characters  
-   - Offers four password types: Memorable, Letters & Numbers, Fully Random, and Numbers Only  
-   - Includes a strength indicator that evaluates password security  
+Implementation Details:
+The password generator uses different algorithms for each password type. Memorable passwords combine random words with numbers for better recall. Fully random passwords use secure cryptographic functions. The strength meter checks length, character variety, and common patterns to give a security score from 0 to 10.
+
+User Features:
+Users can adjust password length with a slider from 8 to 64 characters. Each password type has clear explanations of best use cases. The copy button works on all modern browsers. Password history is saved during the session so users can return to previous passwords.
+
+Technical Choices:
+I chose client-side generation to keep passwords private. The algorithms avoid predictable patterns while maintaining true randomness. The code is modular so new password types can be added easily. All generation happens instantly without server calls.
+
+Testing & Validation:
+The generator was tested across different password lengths and types. Each algorithm was verified to produce truly random outputs. The strength indicator was calibrated against known password security guidelines to ensure accurate scoring.
 
 ### Contact Page  
 This section provides my contact information (email, phone, and address) along with an embedded Google Maps view of my location in Riva del Garda, Italy. A contact form allows visitors to send messages directly to my email.
